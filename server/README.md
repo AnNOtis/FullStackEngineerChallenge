@@ -1,24 +1,33 @@
-# README
+# API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## authenticate API
 
-Things you may want to cover:
+`/session` method: post
+`/session` method: delete
 
-* Ruby version
+## Protected API
 
-* System dependencies
+**Admin:**
 
-* Configuration
+get /admin/review_sessions
+get /admin/review_sessions/:id
+get /admin/users
 
-* Database creation
+post /admin/review_sessions/:id/review
+{
+  reviewer_id:
+  reviewee_id:
+}
 
-* Database initialization
+**Me**
 
-* How to run the test suite
+get /me
 
-* Services (job queues, cache servers, search engines, etc.)
+get /me/reviews
 
-* Deployment instructions
+// submit
+post /me/review/:id
+{
+  content: ''
+}
 
-* ...
