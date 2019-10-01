@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  reviewee: 
+  reviewer: 
+  review_session: 
+  is_submitted: false
+  content: MyText
+
+two:
+  reviewee: 
+  reviewer: 
+  review_session: 
+  is_submitted: false
+  content: MyText
