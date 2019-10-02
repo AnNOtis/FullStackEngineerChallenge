@@ -2,8 +2,13 @@ class ApplicationController < ActionController::API
   rescue_from Errors::APIError, :with => :render_errors
 
   def current_user
-    if session[:user_id]
-      @current_user ||= User.find(session[:user_id])
+    user_id = session[:user_id]
+
+    # for development
+    user_id ||= params[:xxx]
+
+    if user_id
+      @current_user ||= User.find(user_id)
     else
       @current_user = nil
     end

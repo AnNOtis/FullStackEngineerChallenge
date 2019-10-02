@@ -13,7 +13,7 @@ get /admin/review_sessions
 get /admin/review_sessions/:id
 get /admin/users
 
-post /admin/review_sessions/:id/review
+post /admin/review_sessions/:id/assignment
 {
   reviewer_id:
   reviewee_id:
