@@ -35,5 +35,5 @@ class ReviewSession < ApplicationRecord
     if end_at < start_at
       errors.add(:end_at, "should be after the start at")
     end
-   end
+  end
 end

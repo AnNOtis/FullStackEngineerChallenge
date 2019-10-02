@@ -29,4 +29,10 @@ module Errors
       super(msg, :forbidden)
     end
   end
+
+  class UnprocessableEntityError < APIError
+    def initialize(msg="Unprocessable Entity Error")
+      super(msg, :unprocessable_entity)
+    end
+  end
 end

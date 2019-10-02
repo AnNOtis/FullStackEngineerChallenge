@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resource :session, only: [:create, :destroy]
 
   namespace :admin do
-    resources :review_sessions, only: [:index, :show]
+    resources :review_sessions, only: [:index, :show] do
+      resource :assignment, only: [:update]
+    end
   end
 
   get "/me", to: "session#auth"
