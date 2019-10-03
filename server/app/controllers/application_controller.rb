@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::API
+  include ActionController::Cookies
+
   rescue_from Errors::APIError, with: :render_errors
   rescue_from ActiveRecord::ActiveRecordError, with: :render_active_record_errors
 
