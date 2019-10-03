@@ -1,5 +1,8 @@
 {
-  "rules": {},
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  },
   "env": {
     "es6": true,
     "browser": true
@@ -22,6 +25,7 @@
     "SharedArrayBuffer": "readonly"
   },
   "plugins": [
-    "react"
+    "react",
+    "react-hooks"
   ]
 }

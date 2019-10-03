@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const config = {
   entry: './src/index.js',
   output: {
+    publicPath: '/',
     path: path.resolve(__dirname, 'dist'),
     filename: process.env.production
       ? '[name].[chunkhash].js'
