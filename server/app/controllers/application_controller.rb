@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
-  rescue_from Errors::APIError, :with => :render_errors
+  rescue_from Errors::APIError, with: :render_errors
+  rescue_from ActiveRecord::ActiveRecordError, with: :render_active_record_errors
 
   def current_user
     user_id = session[:user_id]
@@ -15,6 +16,11 @@ class ApplicationController < ActionController::API
   end
 
   private
+
+  def render_active_record_errors e
+    error = Errors::UnprocessableEntityError.new(e.message)
+    render json: error, status: error.status
+  end
 
   def render_errors exception
     render json: exception, status: exception.status

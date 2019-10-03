@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-  has_many :reviews
+  has_many :reviews, foreign_key: :reviewer_id
   has_many :review_sessions, through: :reviews
 
   validates :name, presence: true

@@ -26,7 +26,7 @@ get /me
 get /me/reviews
 
 // submit
-post /me/review/:id
+put /me/review/:id
 {
   content: ''
 }

@@ -19,7 +19,7 @@ class Review < ApplicationRecord
   end
 
   def immutable_after_submit
-    return errors.add(:base, "can't modify after submit") if self.is_submitted
+    errors.add(:base, "can't modify after submit") if self.is_submitted
   end
 
   def forbid_self_review
