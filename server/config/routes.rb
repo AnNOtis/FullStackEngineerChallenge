@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get "/ping", to: "ping_pong#index"
 
   resource :session, only: [:create, :destroy]
-  get "/me", to: "session#auth"
+  get "/auth", to: "sessions#auth"
 
   namespace :admin do
     resources :review_sessions, only: [:index, :show] do
