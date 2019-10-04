@@ -39,7 +39,7 @@ function AssignmentsPage() {
 
   return (
     <Wrapper>
-      <Typography variant="h2" color="h2">
+      <Typography variant="h4" color="h3">
         My assignments
       </Typography>
       <Box mt={4}>

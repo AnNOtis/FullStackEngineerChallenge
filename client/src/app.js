@@ -8,6 +8,7 @@ import MainLayout from '@/components/layouts/MainLayout'
 import LoginPage from '@/pages/LoginPage'
 import AssignmentsPage from '@/pages/me/AssignmentsPage'
 import ReviewSessionsPage from '@/pages/admin/ReviewSessionsPage'
+import ReviewSessionPage from '@/pages/admin/ReviewSessionPage'
 
 function App() {
   const isAuth = useInitialAuth()
@@ -28,9 +29,11 @@ function App() {
             path="/admin/review-sessions"
             component={ReviewSessionsPage}
           />
-          <AdminRoute exact path="/admin/review-sessions/:id">
-            <h1>/admin/review-sessions/:id</h1>
-          </AdminRoute>
+          <AdminRoute
+            exact
+            path="/admin/review-sessions/:id"
+            component={ReviewSessionPage}
+          />
           <Route>
             <h1>Not Found Page</h1>
           </Route>

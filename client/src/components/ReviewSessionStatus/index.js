@@ -21,7 +21,7 @@ function ReviewSessionStatus({ reviewSession }) {
 
 ReviewSessionStatus.propTypes = {
   reviewSession: PropTypes.shape({
-    status: PropTypes.oneOf([Object.values(REVIEW_SESSION_STATUS)])
+    status: PropTypes.oneOf(Object.values(REVIEW_SESSION_STATUS))
   })
 }
 

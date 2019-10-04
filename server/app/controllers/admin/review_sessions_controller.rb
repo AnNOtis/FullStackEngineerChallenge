@@ -1,6 +1,6 @@
 class Admin::ReviewSessionsController < Admin::BaseController
   def index
-    @review_sessions = ReviewSession.all
+    @review_sessions = ReviewSession.all.order(end_at: :desc)
   end
 
   def show

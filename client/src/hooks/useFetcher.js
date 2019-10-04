@@ -44,10 +44,12 @@ const useAPI = (fetcher, { manual = false, args = [] } = {}) => {
         .then(data => {
           if (!mounted.current || isCancelled) return
           dispatch({ type: 'succeed', payload: data })
+          return data
         })
         .catch(errorMsg => {
           if (!mounted.current || isCancelled) return
           dispatch({ type: 'failed', payload: errorMsg })
+          throw errorMsg
         })
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps

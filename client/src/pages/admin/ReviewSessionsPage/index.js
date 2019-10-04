@@ -11,11 +11,11 @@ const Wrapper = styled.div`
 function ReviewSessionsPage() {
   return (
     <Wrapper>
-      <Typography variant="h2" color="h2">
-        Review Sessions
+      <Typography variant="h4" color="h3">
+        Review Session List
       </Typography>
       <Paper>
-        <Box mt={2}>
+        <Box mt={4}>
           <ReviewSessionsTable />
         </Box>
       </Paper>
