@@ -6,6 +6,8 @@ function reducer(state, action) {
   switch (action.type) {
     case 'auth':
       return { user: action.payload.user }
+    case 'logout':
+      return { user: undefined }
     default:
       throw new TypeError('No matched type')
   }
@@ -13,7 +15,7 @@ function reducer(state, action) {
 
 function AuthContextProvider({ children }) {
   return (
-    <AuthContext.Provider value={useReducer(reducer, { user: null })}>
+    <AuthContext.Provider value={useReducer(reducer, {})}>
       {children}
     </AuthContext.Provider>
   )

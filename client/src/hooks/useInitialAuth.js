@@ -5,7 +5,7 @@ import * as apis from '@/apis/public'
 let isTriggered = false
 
 function useInitialAuth() {
-  const [isAuth, setIsAuth] = useState(false)
+  const [isAuth, setIsAuth] = useState(isTriggered)
   const [, dispatch] = useAuthContext()
 
   useEffect(() => {
@@ -16,12 +16,11 @@ function useInitialAuth() {
       .auth()
       .then(res => {
         dispatch({ type: 'auth', payload: res.data })
+      })
+      .finally(() => {
         setIsAuth(true)
       })
-      .catch(() => {
-        setIsAuth(true)
-      })
-  }, [dispatch, setIsAuth])
+  }, [dispatch])
 
   return isAuth
 }

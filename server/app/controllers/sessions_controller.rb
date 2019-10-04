@@ -25,6 +25,6 @@ class SessionsController < ApplicationController
   private
 
   def render_user user
-    render json: user.as_json(root: true, only: [:email, :name, :is_admin])
+    render json: user.as_json(root: true, only: [:email, :name, :is_admin], methods: [:avatar_url])
   end
 end

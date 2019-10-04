@@ -5,7 +5,7 @@ import useAuthContext from '@/contexts/AuthContext/useAuthContext'
 
 function AdminRoute({ component: Component, ...rest }) {
   const location = useLocation()
-  const { user } = useAuthContext()
+  const [{ user }] = useAuthContext()
 
   if (!user || !user.isAdmin) {
     return (

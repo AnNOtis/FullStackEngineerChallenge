@@ -7,4 +7,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :password_digest, presence: true
   validates :is_admin, inclusion: { in: [ true, false ] }
+
+  def avatar_url
+    "//api.adorable.io/avatars/300/#{email}.png" if email
+  end
 end
