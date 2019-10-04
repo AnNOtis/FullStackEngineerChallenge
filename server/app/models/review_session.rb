@@ -6,6 +6,16 @@ class ReviewSession < ApplicationRecord
   validates :end_at, presence: true
   validate :end_after_start
 
+  def status
+    if start_at > Date.today
+      "UPCOMING"
+    elsif end_at < Date.today
+      "EXPIRED"
+    else
+      "CURRENT"
+    end
+  end
+
   def outdated?
     end_at < DateTime.current()
   end

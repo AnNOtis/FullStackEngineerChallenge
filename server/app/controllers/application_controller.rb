@@ -4,6 +4,8 @@ class ApplicationController < ActionController::API
   rescue_from Errors::APIError, with: :render_errors
   rescue_from ActiveRecord::ActiveRecordError, with: :render_active_record_errors
 
+  before_action :force_json
+
   def current_user
     user_id = session[:user_id]
 
@@ -27,4 +29,8 @@ class ApplicationController < ActionController::API
   def render_errors exception
     render json: exception, status: exception.status
   end
+
+  def force_json
+    request.format = :json
+ end
 end

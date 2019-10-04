@@ -1,9 +1,13 @@
 import client from './client'
 
-export function getReviews() {
-  return client.get('/me/reviews')
+export function getAssignments() {
+  return client.get('/me/assignments')
 }
 
-export function submitReview(id, content) {
-  return client.get(`/me/reviews/${id}`, { content })
+export function getAssignment(id) {
+  return client.get(`/me/assignments/${id}`)
+}
+
+export function submitAssignment(id, content) {
+  return client.put(`/me/assignments/${id}`, { content })
 }

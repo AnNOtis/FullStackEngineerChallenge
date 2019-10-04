@@ -40,7 +40,7 @@ const useAPI = (fetcher, { manual = false, args = [] } = {}) => {
 
       dispatch({ type: 'start' })
 
-      fetcher(...actualArgs)
+      return fetcher(...actualArgs)
         .then(data => {
           if (!mounted.current || isCancelled) return
           dispatch({ type: 'succeed', payload: data })
@@ -50,7 +50,8 @@ const useAPI = (fetcher, { manual = false, args = [] } = {}) => {
           dispatch({ type: 'failed', payload: errorMsg })
         })
     },
-    [args, fetcher, mounted]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [...args, fetcher, mounted]
   )
 
   useEffect(() => {

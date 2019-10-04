@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   end
 
   namespace :me do
-    resources :reviews, only: [:index, :update]
+    resources :assignments, only: [:index, :show, :update]
   end
 end
