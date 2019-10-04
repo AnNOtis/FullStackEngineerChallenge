@@ -7,6 +7,7 @@ import useInitialAuth from '@/hooks/useInitialAuth'
 import MainLayout from '@/components/layouts/MainLayout'
 import LoginPage from '@/pages/LoginPage'
 import AssignmentsPage from '@/pages/me/AssignmentsPage'
+import ReviewSessionsPage from '@/pages/admin/ReviewSessionsPage'
 
 function App() {
   const isAuth = useInitialAuth()
@@ -22,9 +23,11 @@ function App() {
             path="/me/assignments"
             component={AssignmentsPage}
           />
-          <AdminRoute exact path="/admin/review-sessions">
-            <h1>/admin/review-sessions</h1>
-          </AdminRoute>
+          <AdminRoute
+            exact
+            path="/admin/review-sessions"
+            component={ReviewSessionsPage}
+          />
           <AdminRoute exact path="/admin/review-sessions/:id">
             <h1>/admin/review-sessions/:id</h1>
           </AdminRoute>

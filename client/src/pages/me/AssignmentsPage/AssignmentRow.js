@@ -1,18 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { TableRow, TableCell, Avatar, Chip } from '@material-ui/core'
+import { TableRow, TableCell, Avatar } from '@material-ui/core'
 import { Done as DoneIcon } from '@material-ui/icons'
 import styled from 'styled-components'
-import { format } from 'date-fns'
-import { REVIEW_SESSION_STATUS } from '@/constants'
-
-function formatDate(dateString) {
-  return format(new Date(dateString), 'yyyy-MM-dd')
-}
+import { formatDate } from '@/utils'
+import ReviewSessionStatus from '@/components/ReviewSessionStatus'
 
 const StyledAvatar = styled(Avatar)`
   display: inline-block;
   margin-right: ${props => props.theme.spacing(1)}px;
+`
+
+const StyledTableRow = styled(TableRow)`
+  cursor: pointer;
 `
 
 const UserCell = styled.div`
@@ -21,23 +21,11 @@ const UserCell = styled.div`
   align-items: center;
 `
 
-const statusElementMap = {
-  [REVIEW_SESSION_STATUS.upcomming]: (
-    <Chip size="small" variant="outlined" label="upcomming" />
-  ),
-  [REVIEW_SESSION_STATUS.expired]: (
-    <Chip size="small" variant="outlined" label="expired" />
-  ),
-  [REVIEW_SESSION_STATUS.current]: (
-    <Chip size="small" variant="outlined" color="primary" label="current" />
-  )
-}
-
 function AssignmentRow({ assignment, onClick }) {
   const { id, reviewee, reviewSession: session, isSubmitted } = assignment
 
   return (
-    <TableRow hover onClick={() => onClick(id)}>
+    <StyledTableRow hover onClick={() => onClick(id)}>
       <TableCell component="th" scope="row">
         {session.title}
       </TableCell>
@@ -52,8 +40,10 @@ function AssignmentRow({ assignment, onClick }) {
       </TableCell>
       <TableCell align="right">{formatDate(session.startAt)}</TableCell>
       <TableCell align="right">{formatDate(session.endAt)}</TableCell>
-      <TableCell align="right">{statusElementMap[session.status]}</TableCell>
-    </TableRow>
+      <TableCell align="right">
+        <ReviewSessionStatus reviewSession={session} />
+      </TableCell>
+    </StyledTableRow>
   )
 }
 

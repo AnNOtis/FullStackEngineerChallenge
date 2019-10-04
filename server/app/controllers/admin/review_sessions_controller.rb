@@ -1,6 +1,6 @@
 class Admin::ReviewSessionsController < Admin::BaseController
   def index
-    render json: ReviewSession.all
+    @review_sessions = ReviewSession.all
   end
 
   def show
