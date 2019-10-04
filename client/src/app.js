@@ -5,6 +5,7 @@ import ProtectedRoute from '@/components/ProtectedRoute'
 import AdminRoute from '@/components/AdminRoute'
 import useInitialAuth from '@/hooks/useInitialAuth'
 import MainLayout from '@/components/layouts/MainLayout'
+import LoginPage from '@/pages/LoginPage'
 
 function App() {
   const isAuth = useInitialAuth()
@@ -14,9 +15,7 @@ function App() {
       {isAuth && (
         <Switch>
           <Redirect exact from="/" to="/me/assignments" />
-          <Route exact path="/login">
-            <h1>/login</h1>
-          </Route>
+          <Route exact path="/login" component={LoginPage} />
           <ProtectedRoute exact path="/me/assignments">
             <h1>/me/assignments</h1>
           </ProtectedRoute>

@@ -15,7 +15,6 @@ function parseJSONwithCamelcase(data) {
 
 const client = axios.create({
   baseURL: '/api',
-  timeout: 1000,
   transformResponse: [parseJSONwithCamelcase]
 })
 
