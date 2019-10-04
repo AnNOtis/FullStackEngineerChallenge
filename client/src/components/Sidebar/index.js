@@ -1,10 +1,11 @@
 import React from 'react'
-import { Drawer, List } from '@material-ui/core'
+import { Drawer, List, ListItem, ListItemText } from '@material-ui/core'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import {
   myAssignmentsPath,
-  adminReviewSessionsPath
+  adminReviewSessionsPath,
+  loginPath
 } from '@/helpers/linkHelpers'
 import useAuthContext from '@/contexts/AuthContext/useAuthContext'
 import ListItemLink from './ListItemLink'
@@ -17,7 +18,7 @@ const StyledList = styled(List)`
 `
 
 function Sidebar({ open = false, onClose = () => {} }) {
-  const [{ user }] = useAuthContext()
+  const [{ user }, dispatch] = useAuthContext()
 
   const meLinks = (
     <>
@@ -35,11 +36,27 @@ function Sidebar({ open = false, onClose = () => {} }) {
       />
     </>
   )
+
+  const otherLinks = (
+    <>
+      <SubTitle>Others</SubTitle>
+      <ListItemLink
+        primary={user ? 'Change account' : 'Log in'}
+        to={loginPath()}
+      />
+      {user && (
+        <ListItem button onClick={() => dispatch({ type: 'logout' })}>
+          <ListItemText primary="Log out" />
+        </ListItem>
+      )}
+    </>
+  )
   return (
     <Drawer open={open} onClose={onClose} onClick={onClose}>
       <StyledList>
         {user && meLinks}
         {user && user.isAdmin && adminLinks}
+        {otherLinks}
       </StyledList>
     </Drawer>
   )
