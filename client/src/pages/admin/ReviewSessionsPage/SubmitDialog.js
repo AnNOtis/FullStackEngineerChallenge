@@ -67,7 +67,6 @@ function SubmitDialog({
           value={startAt}
           onChange={setStartAt}
           maxDate={endAt}
-          minDate={Date.now()}
         />
         <KeyboardDatePicker
           fullWidth

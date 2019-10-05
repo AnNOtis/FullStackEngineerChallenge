@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'ffaker'
 
 user_number = 5
 
@@ -16,39 +17,73 @@ admin_user = User.create!(
   is_admin: true,
 )
 
+names = [
+  'Pinkman',
+  *((1..user_number).map { FFaker::Name.unique.first_name })
+]
 normal_users = User.create!(
-  (1..user_number).map do |id|
+  names.map do |name|
     {
-      name: "User##{id}",
-      email: "user#{id}@example.com",
+      name: name,
+      email: "#{name.downcase}@example.com",
       password: '123123',
       password_confirmation: '123123',
       is_admin: false
     }
   end
 )
+demo_normal_user = normal_users.first
 
-ReviewSession.create!(
+expiredSession = ReviewSession.create!(
   title: '2019 Q1 Performance Review',
-  start_at: Date.new(2019, 1, 1).beginning_of_day,
-  end_at: Date.new(2019, 3, 31).end_of_day
+  start_at: Time.zone.parse("2019-01-01"),
+  end_at: Time.zone.parse("2019-03-31")
 )
 
-ReviewSession.create!(
-  title: 'Forever Performance Review',
-  start_at: Time.now,
-  end_at: Date.new(2099, 12, 31).end_of_day
+currentSession = ReviewSession.create!(
+  title: '2019 Q4 Performance Review',
+  start_at: Time.zone.parse("2019-09-30"),
+  end_at: Time.zone.parse("2099-12-31")
+)
+
+upcomingSession = ReviewSession.create!(
+  title: '2020 Performance Review',
+  start_at: Time.zone.parse("2020-01-01"),
+  end_at: Time.zone.parse("2020-12-31")
 )
 
 reviewers = [*normal_users, admin_user]
 reviewers.each_index do |index|
   reviewer = reviewers[index]
-  q1 = ReviewSession.first
 
   Review.create!(
-    review_session: q1,
+    review_session: expiredSession,
     reviewer: reviewer,
     reviewee: reviewers[(index + 1) % reviewers.length],
-    content: 'Foooooooooooobar!'
+    is_submitted: true,
+    content: FFaker::Music.unique.album
+  )
+end
+
+[currentSession, upcomingSession].each do |session|
+  Review.create!(
+    review_session: session,
+    reviewer: demo_normal_user,
+    reviewee: normal_users[1],
+  )
+  Review.create!(
+    review_session: session,
+    reviewer: demo_normal_user,
+    reviewee: normal_users[2],
+  )
+  Review.create!(
+    review_session: session,
+    reviewer: admin_user,
+    reviewee: normal_users[3],
+  )
+  Review.create!(
+    review_session: session,
+    reviewer: admin_user,
+    reviewee: normal_users[4],
   )
 end

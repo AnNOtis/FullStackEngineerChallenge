@@ -5,6 +5,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 import useAuthContext from '@/contexts/AuthContext/useAuthContext'
 import * as apis from '@/apis/public'
 import useFetcher from '@/hooks/useFetcher'
+import { demoUser, demoAdminUser} from '@/constants'
 
 const Wrapper = styled.div`
   > * + * {
@@ -33,7 +34,7 @@ function LoginPage() {
         variant="contained"
         color="primary"
         disabled={loading}
-        onClick={() => triggerLogin('user1@example.com', '123123')}
+        onClick={() => triggerLogin(demoUser.email, demoUser.password)}
       >
         Login as employee
       </Button>
@@ -41,7 +42,7 @@ function LoginPage() {
         variant="contained"
         color="primary"
         disabled={loading}
-        onClick={() => triggerLogin('admin@example.com', '123123')}
+        onClick={() => triggerLogin(demoAdminUser.email, demoAdminUser.password)}
       >
         Login as admin user
       </Button>
