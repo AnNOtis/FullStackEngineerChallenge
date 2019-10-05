@@ -1,29 +1,36 @@
+# Full Stack Developer Challenge
+
+An assignment from [here](https://github.com/Pay-Baymax/FullStackEngineerChallenge)
+
+## Prerequisite:
+
+- Ruby v2.5.1
+- Bundler
+- Node.js >= v10
+- yarn
+
 ## Setup
 
-Prerequisite:
-- Ruby v2.5.1 & Bundler
-- Node.js >= v10 & yarn
+1. Clone repository
 
-Clone repository
+  ```
+  git clone git@github.com:AnNOtis/FullStackEngineerChallenge.git
+  cd FullStackEngineerChallenge
+  ```
 
-```
-git clone git@github.com:AnNOtis/FullStackEngineerChallenge.git
-cd FullStackEngineerChallenge
-```
+2. Install dependencies and seed Datebase
 
-Install dependencies and seed Datebase
+  ```
+  ./setup.sh
+  ```
 
-```
-./setup.sh
-```
+3. Run rails server and webpack-dev-server
 
-Run rails server and webpack-dev-server
+  ```
+  ./start.sh
+  ```
 
-```
-./start.sh
-```
-
-open http://localhost:8080
+4. open http://localhost:8080
 
 ## How to browse the website
 
@@ -42,31 +49,32 @@ To explore features, just click left top menu button to see a list of it.
 
 **Frontend**
 
-- React stack
+- React
 - React context for shared state
-- Material UI + styled-components
+- Material UI + styled-components
 
-## Thought of design behind the project
+## Design choices behind the project
 
-### Server Side:
+### Server Side
 
 Server code are under `/server` folder. It's a standard Rails application with API mode.
 
-There are three tables in the datebase:
+Here is the database design:
 
 ![ERD](https://raw.githubusercontent.com/AnNOtis/FullStackEngineerChallenge/master/_misc/ERD.png)
 
 **ReviewSession**
 
-It's an entity for each performance review. Record the period and the name of performance reviews.
+It's an entity for performance reviews. Record the period and the name of performance reviews.
 
 **Review**
 
-It presents the relationship between reviewer and reviewee. Once admin user assign a reviewer to a reviewee, a record will be created in this table.
+It presents the relationship between reviewer and reviewee. Once an admin user assign a reviewer to a reviewee, a record will be created in this table.
 
 Also, there are two assumptions of my implementation.
-- A reviewee can only be reviewed once in a performance review.
-- A reviewer can have multiple reviewees, but reviewee can only have one reviewer in a performance review.
+
+1. A reviewee can only be reviewed once in a performance review.
+2. A reviewer can have multiple reviewees, but reviewee can only have one reviewer in a performance review.
 
 **User**
 
@@ -74,7 +82,8 @@ It records all the users in the system including normal users and admin users. T
 
 The above design also benefits user experience, an admin user can write a feedback without switching accounts.
 
-### Client Side:
+
+### Client Side
 
 Client codes are under `/client` folder. It's based on top of React.
 
@@ -83,9 +92,9 @@ Here are a few design decisions I made:
 **State management**
 
 I chose not to introduce state management framework such as Redux for speeding up development.
-Instead, I used React's built-in Context and useReduce hook to manage gloabl states.
+Instead, I used React's built-in `context` and `useReducer` hook to manage gloabl states.
 
-React context is suitable for such a small app. However, in a pratical application, I usually use Redux for an early bailout to avoid performance problem.
+React context is suitable for such a small app. However, for practical applications, I usually use Redux for an early bailout to avoid performance problem.
 
 **Styling**
 
@@ -103,7 +112,7 @@ By unifying API calling through `useFetcher`, I'm able to add up API calling fea
 
 **System**
 
-- Time zones cross multiple countries
+- Multiple time zones
 - User experience:
   - Frontend validation
   - API cache layer
@@ -115,12 +124,15 @@ By unifying API calling through `useFetcher`, I'm able to add up API calling fea
   - CORS settings
   - Configs can be changed by environment variables
 
-**Feature**
+**Features**
 
 - Sign Up page
 - Add/remove/update/view employees
 - List feedbacks given to the current user
 
+
+<details><summary>Click to see the original content</summary>
+<p>
 
 # Full Stack Developer Challenge
 This is an interview challengs. Please feel free to fork. Pull Requests will be ignored.
@@ -161,3 +173,6 @@ Design a web application that allows employees to submit feedback toward each ot
 * Technology and design choices
 * Identify areas of your strengths
 * This is not a pass or fail test, this will serve as a common ground that we can deep dive together into specific issues
+
+</p>
+</details>

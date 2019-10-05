@@ -20,8 +20,7 @@ function reducer(state, action) {
 }
 
 /**
- * "useFetcher" is a hook for extracting repetitive logics of
- * handling async action such as loading & error state.
+ * "useFetcher" is a hook for extracting repetitive logics of handling async actions.
  *
  * Here is an usage example:
  *
