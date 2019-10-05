@@ -5,15 +5,17 @@ import { Skeleton } from '@material-ui/lab'
 function SingleSkeleton() {
   return (
     <Grid container spacing={3}>
-      <Grid item xs={4}>
+      <Grid item xs={1}></Grid>
+      <Grid item xs={3}>
         <Skeleton variant="rect" height={32} />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={5}>
         <Skeleton variant="rect" height={32} />
       </Grid>
       <Grid item xs={2}>
         <Skeleton variant="rect" height={32} />
       </Grid>
+      <Grid item xs={1}></Grid>
     </Grid>
   )
 }

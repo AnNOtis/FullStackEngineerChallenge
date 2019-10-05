@@ -39,9 +39,7 @@ function AssignmentsPage() {
 
   return (
     <Wrapper>
-      <Typography variant="h4" color="h3">
-        My assignments
-      </Typography>
+      <Typography variant="h4">My assignments</Typography>
       <Box mt={4}>
         <Typography variant="subtitle1" color="textSecondary">
           Current reviews

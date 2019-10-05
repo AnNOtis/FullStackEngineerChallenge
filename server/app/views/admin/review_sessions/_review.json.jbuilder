@@ -1,4 +1,4 @@
-json.extract! review, :id, :review_session_id, :is_submitted
+json.extract! review, :id, :review_session_id, :is_submitted, :content
 json.reviewee do
   if !review.reviewee
     json.null!

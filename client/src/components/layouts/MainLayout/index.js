@@ -54,8 +54,10 @@ function MainLayout({ children }) {
         </Toolbar>
       </AppBar>
       <>
-        <Container maxWidth="md" py={2}>
-          <Box py={1}>{children}</Box>
+        <Container maxWidth="md">
+          <Box pt={2} pb={8}>
+            {children}
+          </Box>
         </Container>
         <Sidebar open={isSidebarOpen} onClose={() => setSidebar(false)} />
       </>

@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Done as DoneIcon } from '@material-ui/icons'
 import {
   Table,
   TableHead,
@@ -10,6 +9,7 @@ import {
   TableBody
 } from '@material-ui/core'
 import ReviewerCell from './ReviewerCell'
+import SubmittedCell from './SubmittedCell'
 
 const StyledTableRow = styled(TableRow)`
   cursor: pointer;
@@ -41,7 +41,7 @@ function ReviewSessionTable({ reviewSession }) {
               />
             </TableCell>
             <TableCell align="center">
-              {review.isSubmitted ? <DoneIcon color="primary" /> : 'No'}
+              <SubmittedCell review={review} />
             </TableCell>
           </StyledTableRow>
         ))}

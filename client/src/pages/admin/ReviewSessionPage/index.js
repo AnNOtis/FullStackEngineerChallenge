@@ -27,7 +27,7 @@ function ReviewSessionsPage() {
       </Breadcrumbs>
       <Typography variant="h4">{reviewSession.title}</Typography>
       {result && (
-        <Typography variant="p">
+        <Typography component="div" color="textSecondary">
           <ReviewSessionStatus reviewSession={reviewSession} />{' '}
           {formatDate(reviewSession.startAt)} -{' '}
           {formatDate(reviewSession.endAt)}

@@ -11,9 +11,7 @@ const Wrapper = styled.div`
 function ReviewSessionsPage() {
   return (
     <Wrapper>
-      <Typography variant="h4" color="h3">
-        Review Session List
-      </Typography>
+      <Typography variant="h4">Review Session List</Typography>
       <Paper>
         <Box mt={4}>
           <ReviewSessionsTable />

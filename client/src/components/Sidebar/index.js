@@ -15,30 +15,33 @@ const StyledList = styled(List)`
   width: 250px;
   max-width: 100%;
   background-color: ${props => props.theme.palette.background.paper};
+  > * + * {
+    margin-top: ${props => props.theme.spacing(4)}px;
+  }
 `
 
 function Sidebar({ open = false, onClose = () => {} }) {
   const [{ user }, dispatch] = useAuthContext()
 
   const meLinks = (
-    <>
+    <div>
       <SubTitle>Me</SubTitle>
       <ListItemLink primary="My assignments" to={myAssignmentsPath()} />
-    </>
+    </div>
   )
 
   const adminLinks = (
-    <>
+    <div>
       <SubTitle>Admin</SubTitle>
       <ListItemLink
         primary="Performace review"
         to={adminReviewSessionsPath()}
       />
-    </>
+    </div>
   )
 
   const otherLinks = (
-    <>
+    <div>
       <SubTitle>Others</SubTitle>
       <ListItemLink
         primary={user ? 'Change account' : 'Log in'}
@@ -49,7 +52,7 @@ function Sidebar({ open = false, onClose = () => {} }) {
           <ListItemText primary="Log out" />
         </ListItem>
       )}
-    </>
+    </div>
   )
   return (
     <Drawer open={open} onClose={onClose} onClick={onClose}>
