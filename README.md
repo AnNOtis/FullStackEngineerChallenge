@@ -18,7 +18,7 @@ An assignment from [here](https://github.com/Pay-Baymax/FullStackEngineerChallen
   cd FullStackEngineerChallenge
   ```
 
-2. Install dependencies and seed Datebase
+2. Install dependencies and seed datebase
 
   ```
   ./setup.sh
@@ -36,9 +36,9 @@ An assignment from [here](https://github.com/Pay-Baymax/FullStackEngineerChallen
 
 I've predefined some mock data that can be played around.
 
-You can go to [Login page](http://localhost:8080/login), and choose either **login as user** or **login as admin** as a quick start.
+You can go to [Login page](http://localhost:8080/login), and choose either **"Login as employee"** or **"Login as admin"** as a quick start.
 
-To explore features, just click left top menu button to see a list of it.
+To explore features, click the left-top menu button to see a list of it.
 
 ## Tech stack
 
@@ -57,7 +57,7 @@ To explore features, just click left top menu button to see a list of it.
 
 ### Server Side
 
-Server code are under `/server` folder. It's a standard Rails application with API mode.
+The server code is under the `/server` folder. It's a standard Rails application with API mode.
 
 Here is the database design:
 
@@ -69,44 +69,43 @@ It's an entity for performance reviews. Record the period and the name of perfor
 
 **Review**
 
-It presents the relationship between reviewer and reviewee. Once an admin user assign a reviewer to a reviewee, a record will be created in this table.
+It presents the relationship between a reviewer and a reviewee. Once an admin user assigns a reviewer to a reviewee, a record is created in this table.
 
-Also, there are two assumptions of my implementation.
+Also, there are two assumptions about my implementation.
 
-1. A reviewee can only be reviewed once in a performance review.
-2. A reviewer can have multiple reviewees, but reviewee can only have one reviewer in a performance review.
+1. A reviewee can have only one reviewer in a review session.
+2. A reviewer can have multiple reviewees per review session.
 
 **User**
 
-It records all the users in the system including normal users and admin users. Two roles in the same table make the system easy to treat an admin user as a normal user.
+It records all the users in the system, including normal users and admin users. Two roles in the same table make the system easy to treat an admin user as a normal user.
 
-The above design also benefits user experience, an admin user can write a feedback without switching accounts.
+The above design also benefits the user experience. An admin user can write feedback as a reviewer without switching accounts.
 
 
 ### Client Side
 
-Client codes are under `/client` folder. It's based on top of React.
+The client code is under the `/client` folder. It's based on top of React.
 
 Here are a few design decisions I made:
 
 **State management**
 
-I chose not to introduce state management framework such as Redux for speeding up development.
-Instead, I used React's built-in `context` and `useReducer` hook to manage gloabl states.
+For speeding up development, I chose not to introduce any state management framework such as Redux. Instead, I used React's built-in `context` and `useReducer` hook to manage global states.
 
-React context is suitable for such a small app. However, for practical applications, I usually use Redux for an early bailout to avoid performance problem.
+React context is suitable for such a small app. However, for a practical application, I usually use Redux for an early bailout to avoid performance problems.
 
 **Styling**
 
-I used [Material UI](https://material-ui.com/) to avoid building common UIs. I chose it because it provides complete and overridable design system and it's well-documented.
+I used [Material UI](https://material-ui.com/) to avoid building common UIs. I chose it because it provides a complete and overridable design system, and it's well-documented.
 
-I choose [styled-components](https://www.styled-components.com/) to tweak styles because it scopes CSS and can easily integrated with the design system of Material UI. Also, it removes the mapping between components and classes. That makes its syntax neat.
+I choose [styled-components](https://www.styled-components.com/) to tweak styles because it scopes CSS and can be easily integrated with the design system of Material UI. Also, it removes the mapping between components and classes. That makes its syntax neat.
 
 **API calling**
 
-I designed a hook [`useFetcher`](https://github.com/AnNOtis/FullStackEngineerChallenge/blob/master/client/src/hooks/useFetcher.js) to handle the chores of fetching API such as loading, error, cancellation and keeping data in state. By `useFetcher` , I can just use response result to render view and no need to take care of request handling in view layer.
+I designed a hook [`useFetcher`](https://github.com/AnNOtis/FullStackEngineerChallenge/blob/master/client/src/hooks/useFetcher.js) to handle the chores of fetching API such as loading, error, cancellation and keeping data in a state. By `useFetcher` , I can just use response results to render view and no need to take care of request handling in the view layers.
 
-By unifying API calling through `useFetcher`, I'm able to add up API calling features in the future without touching too much code.
+By unifying API calling through `useFetcher`, I'm able to add up future API features such as caching without touching too much code.
 
 ## Possible future improvements
 
@@ -126,10 +125,19 @@ By unifying API calling through `useFetcher`, I'm able to add up API calling fea
 
 **Features**
 
-- Sign Up page
-- Add/remove/update/view employees
-- List feedbacks given to the current user
+- Sign up
+- Add/remove/update/view users
+- List feedbacks has given to the current user
 
+## Screenshots
+
+<p float="left">
+  <img src="https://raw.githubusercontent.com/AnNOtis/FullStackEngineerChallenge/master/_misc/screenshot1.png" width="240" />
+  <img src="https://raw.githubusercontent.com/AnNOtis/FullStackEngineerChallenge/master/_misc/screenshot2.png" width="240" />
+  <img src="https://raw.githubusercontent.com/AnNOtis/FullStackEngineerChallenge/master/_misc/screenshot3.png" width="240" />
+</p>
+
+---
 
 <details><summary>Click to see the original content</summary>
 <p>
