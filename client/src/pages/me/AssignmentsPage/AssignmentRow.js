@@ -58,7 +58,7 @@ AssignmentRow.propTypes = {
       avatarUrl: PropTypes.string,
       email: PropTypes.string
     }),
-    id: PropTypes.string,
+    id: PropTypes.number,
     name: PropTypes.string,
     email: PropTypes.string,
     isSubmitted: PropTypes.bool

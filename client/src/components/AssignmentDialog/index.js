@@ -34,7 +34,7 @@ function AssignmentDialog({
 }
 
 AssignmentDialog.propTypes = {
-  id: PropTypes.string,
+  id: PropTypes.number,
   forceDetail: PropTypes.bool,
   onClose: PropTypes.func,
   onSubmitSuccess: PropTypes.func

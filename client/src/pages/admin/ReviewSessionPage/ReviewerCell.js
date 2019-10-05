@@ -68,6 +68,7 @@ function ReviewerCell({ reviewSession, review, allUsers }) {
           })}
       </StyledSelect>
       <Button
+        size="small"
         disabled={reviewerId === remoteReviewerId || loading}
         color="primary"
         variant="contained"
@@ -81,16 +82,16 @@ function ReviewerCell({ reviewSession, review, allUsers }) {
 
 ReviewerCell.propTypes = {
   reviewSession: PropTypes.shape({
-    id: PropTypes.string,
+    id: PropTypes.number,
     status: PropTypes.oneOf(Object.values(REVIEW_SESSION_STATUS))
   }),
   review: PropTypes.shape({
     isSubmitted: PropTypes.bool,
     reviewee: PropTypes.shape({
-      id: PropTypes.string
+      id: PropTypes.number
     }),
     reviewer: PropTypes.shape({
-      id: PropTypes.string
+      id: PropTypes.number
     })
   }),
   allUsers: PropTypes.arrayOf(PropTypes.shape({}))
