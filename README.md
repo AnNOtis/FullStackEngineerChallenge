@@ -1,18 +1,126 @@
 ## Setup
 
-Setup environment:
+Prerequisite:
+- Ruby v2.5.1 & Bundler
+- Node.js >= v10 & yarn
+
+Clone repository
 
 ```
 git clone git@github.com:AnNOtis/FullStackEngineerChallenge.git
 cd FullStackEngineerChallenge
-./setup
 ```
 
-Run server
+Install dependencies and seed Datebase
 
 ```
-./start
+./setup.sh
 ```
+
+Run rails server and webpack-dev-server
+
+```
+./start.sh
+```
+
+open http://localhost:8080
+
+## How to browse the website
+
+I've predefined some mock data that can be played around.
+
+You can go to [Login page](http://localhost:8080/login), and choose either **login as user** or **login as admin** as a quick start.
+
+To explore features, just click left top menu button to see a list of it.
+
+## Tech stack
+
+**Backend**
+
+- Ruby on Rails
+- SQLite
+
+**Frontend**
+
+- React stack
+- React context for shared state
+- Material UI + styled-components
+
+## Thought of design behind the project
+
+### Server Side:
+
+Server code are under `/server` folder. It's a standard Rails application with API mode.
+
+There are three tables in the datebase:
+
+![ERD](https://raw.githubusercontent.com/AnNOtis/FullStackEngineerChallenge/master/_misc/ERD.png)
+
+**ReviewSession**
+
+It's an entity for each performance review. Record the period and the name of performance reviews.
+
+**Review**
+
+It presents the relationship between reviewer and reviewee. Once admin user assign a reviewer to a reviewee, a record will be created in this table.
+
+Also, there are two assumptions of my implementation.
+- A reviewee can only be reviewed once in a performance review.
+- A reviewer can have multiple reviewees, but reviewee can only have one reviewer in a performance review.
+
+**User**
+
+It records all the users in the system including normal users and admin users. Two roles in the same table make the system easy to treat an admin user as a normal user.
+
+The above design also benefits user experience, an admin user can write a feedback without switching accounts.
+
+### Client Side:
+
+Client codes are under `/client` folder. It's based on top of React.
+
+Here are a few design decisions I made:
+
+**State management**
+
+I chose not to introduce state management framework such as Redux for speeding up development.
+Instead, I used React's built-in Context and useReduce hook to manage gloabl states.
+
+React context is suitable for such a small app. However, in a pratical application, I usually use Redux for an early bailout to avoid performance problem.
+
+**Styling**
+
+I used [Material UI](https://material-ui.com/) to avoid building common UIs. I chose it because it provides complete and overridable design system and it's well-documented.
+
+I choose [styled-components](https://www.styled-components.com/) to tweak styles because it scopes CSS and can easily integrated with the design system of Material UI. Also, it removes the mapping between components and classes. That makes its syntax neat.
+
+**API calling**
+
+I designed a hook [`useFetcher`](https://github.com/AnNOtis/FullStackEngineerChallenge/blob/master/client/src/hooks/useFetcher.js) to handle the chores of fetching API such as loading, error, cancellation and keeping data in state. By `useFetcher` , I can just use response result to render view and no need to take care of request handling in view layer.
+
+By unifying API calling through `useFetcher`, I'm able to add up API calling features in the future without touching too much code.
+
+## Possible future improvements
+
+**System**
+
+- Time zones cross multiple countries
+- User experience:
+  - Frontend validation
+  - API cache layer
+  - Normalize API response for reactive update
+  - Code splitting for route-based chunks and dynamic import.
+- Security:
+  - CSRF token
+- Deployment & production setup: (I only set up for development-only)
+  - CORS settings
+  - Configs can be changed by environment variables
+
+**Feature**
+
+- Sign Up page
+- Add/remove/update/view employees
+- List feedbacks given to the current user
+
 
 # Full Stack Developer Challenge
 This is an interview challengs. Please feel free to fork. Pull Requests will be ignored.

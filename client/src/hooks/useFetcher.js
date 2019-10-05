@@ -19,7 +19,45 @@ function reducer(state, action) {
   }
 }
 
-const useAPI = (fetcher, { manual = false, args = [] } = {}) => {
+/**
+ * "useFetcher" is a hook for extracting repetitive logics of
+ * handling async action such as loading & error state.
+ *
+ * Here is an usage example:
+ *
+ *     function SearchResult ({ term }) {
+ *       const {loading, error, result } = useFetch(seachAPI, { args: [term] })
+ *       if (error) {
+ *         return error.toString()
+ *       }
+ *
+ *       if (loading) {
+ *         return 'Loading...'
+ *       }
+ *
+ *       return <>
+ *         {JSON.stringify(result, null, 2)}
+ *       </>
+ *     }
+ *
+ * When <SearchResult> is mounted or props.term is changed, searchAPI will be called with props.term.
+ * You can use the return values of useFetch to render your component.
+ *
+ * @param {function} fetcher - The target async action. The return value should be wrapped in promise.
+ * @param {Object} options
+ * @param {boolean} options.manual -
+ *      Default is false. When set to true, the fetcher won't be executed automatically.
+ * @param {boolean} options.args -
+ *      It will be passed to async function when an automatic excution happens
+ *
+ * @returns {Object} asyncState
+ * @returns {} asyncState.result - result of the execution of the fetcher
+ * @returns {} asyncState.error - error of the execution of the fetcher. will be reset when an execution starts.
+ * @returns {bool} asyncState.loading - true if a execution is continuing
+ * @returns {function} asyncState.trigger - can be called to execute the fetcher.
+ *    it's useful when options.manual is set to true
+ */
+const useFetcher = (fetcher, { manual = false, args = [] } = {}) => {
   const [{ loading, result, error }, dispatch] = useReducer(reducer, {
     loading: !manual,
     result: undefined,
@@ -30,6 +68,7 @@ const useAPI = (fetcher, { manual = false, args = [] } = {}) => {
 
   const trigger = useCallback(
     (...manualArgs) => {
+      // override options.args if trigger is called with arguments
       const actualArgs = manualArgs.length ? manualArgs : args
 
       let isCancelled = false
@@ -42,6 +81,7 @@ const useAPI = (fetcher, { manual = false, args = [] } = {}) => {
 
       return fetcher(...actualArgs)
         .then(data => {
+          // When an execution happends, prevent previous executions to continue.
           if (!mounted.current || isCancelled) return
           dispatch({ type: 'succeed', payload: data })
           return data
@@ -66,4 +106,4 @@ const useAPI = (fetcher, { manual = false, args = [] } = {}) => {
   return { result, error, loading, trigger }
 }
 
-export default useAPI
+export default useFetcher

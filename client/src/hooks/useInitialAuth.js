@@ -9,6 +9,8 @@ function useInitialAuth() {
   const [, dispatch] = useAuthContext()
 
   useEffect(() => {
+    // The auth API can only be triggered once in the application life cycle,
+    // no matter how many times 'useInitialAuth' are called.
     if (isTriggered) return
     isTriggered = true
 
