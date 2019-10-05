@@ -4,14 +4,14 @@ import { Chip } from '@material-ui/core'
 import { REVIEW_SESSION_STATUS } from '@/constants'
 
 const statusElementMap = {
-  [REVIEW_SESSION_STATUS.upcomming]: (
-    <Chip size="small" variant="outlined" label="upcomming" />
+  [REVIEW_SESSION_STATUS.upcoming]: (
+    <Chip size="small" variant="outlined" label="upcoming" color="primary" />
   ),
   [REVIEW_SESSION_STATUS.expired]: (
     <Chip size="small" variant="outlined" label="expired" />
   ),
   [REVIEW_SESSION_STATUS.current]: (
-    <Chip size="small" variant="outlined" color="primary" label="current" />
+    <Chip size="small" variant="default" color="primary" label="current" />
   )
 }
 

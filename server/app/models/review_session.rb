@@ -1,7 +1,7 @@
 class ReviewSession < ApplicationRecord
   has_many :reviews
 
-  validates :title, presence: true, uniqueness: true
+  validates :title, presence: true, uniqueness: true, length: { minimum: 1, maximum: 48 }
   validates :start_at, presence: true
   validates :end_at, presence: true
   validate :end_after_start

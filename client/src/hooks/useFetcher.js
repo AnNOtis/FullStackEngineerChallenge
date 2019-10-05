@@ -48,8 +48,9 @@ const useAPI = (fetcher, { manual = false, args = [] } = {}) => {
         })
         .catch(errorMsg => {
           if (!mounted.current || isCancelled) return
+
           dispatch({ type: 'failed', payload: errorMsg })
-          throw errorMsg
+          return Promise.reject(errorMsg)
         })
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps

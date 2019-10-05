@@ -1,5 +1,5 @@
 export const REVIEW_SESSION_STATUS = {
   expired: 'EXPIRED',
-  upcomming: 'UPCOMMING',
+  upcoming: 'UPCOMING',
   current: 'CURRENT'
 }

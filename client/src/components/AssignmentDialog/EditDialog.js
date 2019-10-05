@@ -47,7 +47,7 @@ function EditDialog({ assignment, onClose, onSubmitSuccess }) {
 
   return (
     <Dialog open onClose={onClose}>
-      <DialogTitle>Create your feedback</DialogTitle>
+      <DialogTitle>Submit your feedback</DialogTitle>
       <DialogContent>
         <DialogContentText>
           We sincerely invited you to write down the feedback for your colleage{' '}
