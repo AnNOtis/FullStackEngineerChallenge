@@ -1,3 +1,4 @@
 #!/bin/sh
 
-(cd server && ./bin/rails server) & (cd client && yarn start)
+cd server && ./bin/rails server &
+cd client && yarn start
