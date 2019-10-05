@@ -6,6 +6,7 @@ import AdminRoute from '@/components/AdminRoute'
 import useInitialAuth from '@/hooks/useInitialAuth'
 import MainLayout from '@/components/layouts/MainLayout'
 import LoginPage from '@/pages/LoginPage'
+import LogoutPage from '@/pages/LogoutPage'
 import AssignmentsPage from '@/pages/me/AssignmentsPage'
 import ReviewSessionsPage from '@/pages/admin/ReviewSessionsPage'
 import ReviewSessionPage from '@/pages/admin/ReviewSessionPage'
@@ -19,6 +20,7 @@ function App() {
         <Switch>
           <Redirect exact from="/" to="/me/assignments" />
           <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/logout" component={LogoutPage} />
           <ProtectedRoute
             exact
             path="/me/assignments"

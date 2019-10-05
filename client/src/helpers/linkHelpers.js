@@ -2,6 +2,10 @@ export function loginPath() {
   return '/login'
 }
 
+export function logoutPath() {
+  return '/logout'
+}
+
 export function myAssignmentsPath() {
   return '/me/assignments'
 }

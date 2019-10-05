@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    render :nothing, status: 200
+    render json: {}, status: :ok
   end
 
   private

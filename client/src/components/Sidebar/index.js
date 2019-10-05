@@ -1,11 +1,13 @@
 import React from 'react'
 import { Drawer, List, ListItem, ListItemText } from '@material-ui/core'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import {
   myAssignmentsPath,
   adminReviewSessionsPath,
-  loginPath
+  loginPath,
+  logoutPath
 } from '@/helpers/linkHelpers'
 import useAuthContext from '@/contexts/AuthContext/useAuthContext'
 import ListItemLink from './ListItemLink'
@@ -21,7 +23,8 @@ const StyledList = styled(List)`
 `
 
 function Sidebar({ open = false, onClose = () => {} }) {
-  const [{ user }, dispatch] = useAuthContext()
+  const history = useHistory()
+  const [{ user }] = useAuthContext()
 
   const meLinks = (
     <div>
@@ -48,7 +51,7 @@ function Sidebar({ open = false, onClose = () => {} }) {
         to={loginPath()}
       />
       {user && (
-        <ListItem button onClick={() => dispatch({ type: 'logout' })}>
+        <ListItem button onClick={() => history.push(logoutPath())}>
           <ListItemText primary="Log out" />
         </ListItem>
       )}
