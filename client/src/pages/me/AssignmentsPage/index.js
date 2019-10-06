@@ -13,8 +13,8 @@ const Wrapper = styled.div`
   margin-top: ${props => props.theme.spacing(4)}px;
 `
 
-function sortByEndAtDesc(items) {
-  return [...items].sort((a, b) => new Date(b).endAt - new Date(a).endAt)
+function sortByIdDesc(items) {
+  return [...items].sort((a, b) => new Date(b.id) - new Date(a.id))
 }
 
 function getCurrentAssignments(assignments) {
@@ -32,7 +32,7 @@ function getPastAssignments(assignments) {
 function AssignmentsPage() {
   const [openDialogId, setOpenDialogId] = useState(null)
   const { result, loading, trigger: refetch } = useFetcher(apis.getAssignments)
-  const assignments = sortByEndAtDesc(get(result, 'data.assignments', []))
+  const assignments = sortByIdDesc(get(result, 'data.assignments', []))
 
   const currentAssignments = getCurrentAssignments(assignments)
   const pastAssignments = getPastAssignments(assignments)
