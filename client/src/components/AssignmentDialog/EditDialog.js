@@ -79,7 +79,7 @@ function EditDialog({ assignment, onClose, onSubmitSuccess }) {
         <Button color="primary" disabled={loading} onClick={onClose}>
           Cancel
         </Button>
-        <Button color="primary" disabled={loading} onClick={handleSubmit}>
+        <Button color="primary" variant="contained" disabled={loading} onClick={handleSubmit}>
           Submit
         </Button>
       </DialogActions>

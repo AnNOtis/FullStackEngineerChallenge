@@ -22,15 +22,14 @@ function ReviewSessionsPage() {
   return (
     <Wrapper>
       <Breadcrumbs aria-label="breadcrumb">
-        <Link to={adminReviewSessionsPath()}>Review Session List</Link>
+        <Link to={adminReviewSessionsPath()}>Review session list</Link>
         <Typography>Review session #{id}</Typography>
       </Breadcrumbs>
-      <Typography variant="h4">{reviewSession.title}</Typography>
+      <Typography variant="h4" gutterBottom>{reviewSession.title}</Typography>
       {result && (
         <Typography component="div" color="textSecondary">
           <ReviewSessionStatus reviewSession={reviewSession} />{' '}
-          {formatDate(reviewSession.startAt)} -{' '}
-          {formatDate(reviewSession.endAt)}
+          {formatDate(reviewSession.startAt)} ~ {formatDate(reviewSession.endAt)}
         </Typography>
       )}
       <Paper>

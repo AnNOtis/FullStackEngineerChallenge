@@ -30,7 +30,7 @@ function ReviewSessionsPage() {
 
   return (
     <Wrapper>
-      <Typography variant="h4">Review Session List</Typography>
+      <Typography variant="h4">Review session list</Typography>
       <StyledFab color="primary" onClick={toggleCreateDialog}>
         <AddIcon />
       </StyledFab>

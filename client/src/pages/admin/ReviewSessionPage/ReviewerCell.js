@@ -18,7 +18,7 @@ function getDisplayName(user) {
 function ReviewerCell({ reviewSession, review, allUsers }) {
   const { reviewer, reviewee } = review
   const [remoteReviewerId, setRemoteReviewerId] = useState(
-    reviewer && reviewer.id
+    (reviewer && reviewer.id) || ''
   )
   const [reviewerId, setReviewerId] = useState(remoteReviewerId)
   const { trigger: updateReviewer, loading, error } = useFetcher(

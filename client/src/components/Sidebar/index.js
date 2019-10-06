@@ -37,7 +37,7 @@ function Sidebar({ open = false, onClose = () => {} }) {
     <div>
       <SubTitle>Admin</SubTitle>
       <ListItemLink
-        primary="Performace review"
+        primary="Review session list"
         to={adminReviewSessionsPath()}
       />
     </div>

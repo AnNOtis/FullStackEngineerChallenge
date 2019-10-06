@@ -22,8 +22,8 @@ function ReviewSessionTable({ reviewSession }) {
     <Table>
       <TableHead>
         <TableRow>
-          <TableCell>reviwee</TableCell>
-          <TableCell>reviewers</TableCell>
+          <TableCell>Reviewee</TableCell>
+          <TableCell>Reviewer</TableCell>
           <TableCell align="center">Submitted</TableCell>
         </TableRow>
       </TableHead>
